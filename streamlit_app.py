@@ -24,7 +24,7 @@ def main():
     """
 
 #model deployment
-model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
+#model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
 
 '''
 def predict_age(Length,Diameter,Height,Whole_weight,Shucked_weight,
