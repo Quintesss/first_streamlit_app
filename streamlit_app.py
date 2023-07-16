@@ -23,10 +23,10 @@ def main():
     Freq cat & Freq subcat
     """
 
+main()
 #model deployment
 #model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
 
-'''
 def predict_age(Length,Diameter,Height,Whole_weight,Shucked_weight,
                 Viscera_weight,Shell_weight):
     input=np.array([[Length,Diameter,Height,Whole_weight,Shucked_weight,
@@ -34,4 +34,3 @@ def predict_age(Length,Diameter,Height,Whole_weight,Shucked_weight,
     prediction = model.predict(input)
     
     return int(prediction)
-'''
