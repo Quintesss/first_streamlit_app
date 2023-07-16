@@ -1,30 +1,37 @@
 import streamlit as st
 import pandas as pd
+import pickle
 
-st.title('Sales Report')
 
-st.header('Q1 Results')
+def main():
+    st.title('Customer Prediction Model')
+    st.header('Predictions')
 
-q1_sales = {
-    'January': 100,
-    'February': 110,
-    'March': 115
-}
+    html_temp = """
+    <div style="background:#025246 ;padding:10px">
+    <h2 style="color:white;text-align:center;"> Customer Segmentation Prediction ML App </h2>
+    </div>
+    """
+    st.markdown(html_temp, unsafe_allow_html = True)
+    #input elements
 
-st.write('January was the start of the year')
-st.write(q1_sales)
+    #input values 
+    """
+    Location: OHE (might be a challenge, mebbe false everything for now)
+    Avg amt & Avg qty
+    Age & Gender & Marital & Child count
+    Freq cat & Freq subcat
+    """
 
-st.header('Q2 Results')
+#model deployment
+model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
 
-q2_sales = {
-    'April': 150,
-    'May': 200,
-    'June': 250
-}
-
-'Q2 had better results:smile:'
-q2_df = pd.DataFrame(q2_sales.items(),
-                     columns=['Month', 'Amount'])
-
-st.table(q2_df)
-st.dataframe(q2_df)
+'''
+def predict_age(Length,Diameter,Height,Whole_weight,Shucked_weight,
+                Viscera_weight,Shell_weight):
+    input=np.array([[Length,Diameter,Height,Whole_weight,Shucked_weight,
+                     Viscera_weight,Shell_weight]]).astype(np.float64)
+    prediction = model.predict(input)
+    
+    return int(prediction)
+'''
