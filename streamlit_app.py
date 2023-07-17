@@ -1,28 +1,8 @@
 import streamlit as st
 import pandas as pd
 import pickle
-
-import sys
-import getpass
-import pandas as pd
 import numpy as np
-from datetime import datetime
-from matplotlib import pyplot as plt
-import seaborn as sns
-from mpl_toolkits import mplot3d 
-
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import NearestNeighbors
-from sklearn.decomposition import PCA
 from sklearn import tree
-
-from math import sqrt
-from sklearn import metrics
-from sklearn.model_selection import cross_val_score, cross_validate
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
 def main():
     st.title('Customer Prediction Model')
