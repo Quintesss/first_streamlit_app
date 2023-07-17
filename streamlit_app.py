@@ -39,7 +39,7 @@ def main():
     Age & Gender & Marital & Child count
     Freq catt & Freq subcat
     """
-
+main();
 #model deployment
 #model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
 
