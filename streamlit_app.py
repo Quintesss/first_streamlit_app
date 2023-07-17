@@ -31,6 +31,8 @@ def main():
     Freq catt & Freq subcat
     """
 
+main();
+
 #model deployment
 #model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
 
