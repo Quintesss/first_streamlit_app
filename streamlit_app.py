@@ -13,16 +13,25 @@ def main():
     """
     st.markdown(html_temp, unsafe_allow_html = True)
     #input elements
+    city_dict = {'Boston':0, 'Denver':0, 'New York City':0, 'San Mateo':0, 'Seattle':0}
 
     location = st.selectbox(
         'Select your city. :world_map:',
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
+    for x in city_dict:
+        if(location == x): city_dict.update({x:1});
+    st.write(city_dict)
+
     avg_qty = st.slider('How many items do you purchase in a typical transaction?', 0, 20, 5)
     avg_amt = st.number_input('How much do you typically spend in a transaction ($)'
-                              , min_value = 0.00, step = 0.01, value = 25.00, format = "%.2f")
-
+                              , min_value = 0.00, step = 0.01, value = 25.00, format = "%f")
+    
+    age = 'avg age'
+    gender = 'mode gender'
+    martial = 'mode status'
+    child_count = 'mode count'
     #input values 
     """
     Location: OHE (might be a challenge, mebbe false everything for now)
@@ -30,8 +39,6 @@ def main():
     Age & Gender & Marital & Child count
     Freq catt & Freq subcat
     """
-
-main();
 
 #model deployment
 #model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
