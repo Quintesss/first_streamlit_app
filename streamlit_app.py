@@ -22,16 +22,18 @@ def main():
 
     for x in city_dict:
         if(location == x): city_dict.update({x:1});
-    st.write(city_dict)
+    #st.write(city_dict) --checking
 
     avg_qty = st.slider('How many items do you purchase in a typical transaction?', 0, 20, 5)
     avg_amt = st.number_input('How much do you typically spend in a transaction ($)'
                               , min_value = 0.00, step = 0.01, value = 25.00, format = "%f")
     
-    age = 'avg age'
-    gender = 'mode gender'
-    martial = 'mode status'
-    child_count = 'mode count'
+    age = 50 
+    gender = 2
+    martial = 0
+    child_count = 0
+    freq_cat = 0 #main
+    subcat = 1 #warm
     #input values 
     """
     Location: OHE (might be a challenge, mebbe false everything for now)
@@ -39,14 +41,17 @@ def main():
     Age & Gender & Marital & Child count
     Freq catt & Freq subcat
     """
-main();
-#model deployment
-#model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
+    predict_age(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
 
-def predict_age(Length,Diameter,Height,Whole_weight,Shucked_weight,
-                Viscera_weight,Shell_weight):
-    input=np.array([[Length,Diameter,Height,Whole_weight,Shucked_weight,
-                     Viscera_weight,Shell_weight]]).astype(np.float64)
+main();
+
+#model deployment
+model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
+
+def predict_age(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
+    input=np.array([[gender,martial,child_count,age
+                     ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
+                     ,avg_amt,avg_qty,freq_cat,freq_subcat,20,6]]).astype(np.float64)
     prediction = model.predict(input)
     
     return int(prediction)
