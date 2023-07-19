@@ -28,7 +28,7 @@ def main():
 
     avg_qty = st.slider('How many items do you purchase in a typical transaction?', 0, 20, 5)
     avg_amt = st.number_input('How much do you typically spend in a transaction ($)'
-                              , min_value = 0.00, step = 0.01, value = 25.00, format = "%f")
+                              , min_value = 0.00, step = 0.01, value = 25.00, format = "%.2f")
     
     age = 50 
     gender = 2
