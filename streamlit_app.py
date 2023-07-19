@@ -43,7 +43,8 @@ def main():
     Age & Gender & Marital & Child count
     Freq catt & Freq subcat
     """
-    predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
+    prediction = predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
+    st.write(prediction);
 
 #model deployment
 model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
