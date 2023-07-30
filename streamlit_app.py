@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import numpy as np
 from sklearn import tree
+import joblib
 
 def main():
     st.title('Customer Prediction Model')
@@ -47,7 +48,7 @@ def main():
     st.write(prediction);
 
 #model deployment
-model = pickle.load(open('CustAnalyV2.pkl','rb'))
+model = joblib.load('CustAnalyV2.joblib') 
 
 def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
     input=np.array([[gender,martial,child_count,age
