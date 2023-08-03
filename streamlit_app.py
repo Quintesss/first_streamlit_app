@@ -48,7 +48,7 @@ def main():
     st.write(prediction);
 
 #model deployment
-model = joblib.load('CustAnalyV2.joblib') 
+model = pickle.load('cust_analysis_treeClass.pkl') 
 
 def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
     input=np.array([[gender,martial,child_count,age
