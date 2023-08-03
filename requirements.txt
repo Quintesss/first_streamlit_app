@@ -7,3 +7,4 @@ matplotlib==3.4.1
 plotly==4.14.3
 pandas==1.2.3
 scikit-learn
+-m pip install --upgrade pip
