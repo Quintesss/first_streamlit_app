@@ -47,7 +47,7 @@ def main():
     st.write(prediction);
 
 #model deployment
-model = pickle.load(open('cust_analysis_treeClass.pkl','rb'))
+model = pickle.load(open('CustAnalyV2.1.pkl','rb'))
 
 def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
     input=np.array([[gender,martial,child_count,age
