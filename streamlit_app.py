@@ -48,8 +48,8 @@ def main():
     st.write(prediction);
 
 #model deployment
-with open('out/cache/' +hashed_url, 'rb') as pickle_file:
-    model = pickle.load('cust_analysis_treeClass.pkl') 
+open('cust_analysis_treeClass.pkl', 'rb') as f:
+    model = pickle.load(f) 
 
 def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
     input=np.array([[gender,martial,child_count,age
