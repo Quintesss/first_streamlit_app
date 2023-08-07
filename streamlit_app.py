@@ -66,8 +66,8 @@ def main():
         st.subheader("You are a HIGH spender :moneybag:");
     else: st.subheader(":red[INVALID prediction output]");
 
-    st.dataframe(predict_x)
-    #get_counterfactual(predict_x);
+    #st.dataframe(predict_x)
+    get_counterfactual(predict_x);
 
 #model deployment
 model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
@@ -93,6 +93,7 @@ def get_counterfactual(predict_x):
     query_instances = predict_x.iloc[[0]]
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
-    st.write(dice_exp.visualize_as_dataframe())
+    #dice_exp.visualize_as_dataframe()
+    exp.cf_examples_list[0].final_cfs_df
 
 main();
