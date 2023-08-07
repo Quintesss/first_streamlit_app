@@ -15,7 +15,7 @@ def main():
     city_dict = {'Boston':0, 'Denver':0, 'New York City':0, 'San Mateo':0, 'Seattle':0}
 
     location = st.selectbox(
-        'Select your city. 	:world_map:',
+        'Select your city :world_map:',
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
@@ -45,7 +45,7 @@ def main():
 
     #write a message
     if (prediction == 0):
-        st.subheader("You are a LOW spender ");
+        st.subheader("You are a LOW spender :man-gesturing-no: :fencer:");
     elif (prediction == 1):
         st.subheader("You are a HIGH spender :moneybag:");
     else: st.subheader(":red[INVALID prediction output]");
