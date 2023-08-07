@@ -95,6 +95,6 @@ def get_counterfactual(predict_x):
     query_instances = predict_x.iloc[[0]]
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
-    st.dataframe(dice_exp.visualize_as_dataframe())
+    st.write(dice_exp.visualize_as_dataframe())
 
 main();
