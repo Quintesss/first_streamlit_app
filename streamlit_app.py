@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import numpy as np
 from sklearn import tree
+import dice_ml
 
 def main():
     html_temp = """
@@ -78,5 +79,20 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
     prediction = model.predict(predict_x)
     
     return int(prediction)
+
+def get_counterfactual():
+    ohe_customer_us = pd.read_csv("CustAnaly_newCritV1.1.csv")
+    
+    d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
+                      continuous_features=list(X_train.columns), outcome_name='SPEND_RANK')
+    backend = 'sklearn'
+    m = dice_ml.Model(model=rf, backend=backend)
+    exp = dice_ml.Dice(d,m)
+    
+    # Generate counterfactual examples
+    query_instances = predict_x.iloc[[0]]
+    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=4, desired_class="opposite")
+    # Visualize counterfactual explanation
+    dice_exp.visualize_as_dataframe()
 
 main();
