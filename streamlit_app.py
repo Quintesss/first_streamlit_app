@@ -3,7 +3,6 @@ import pandas as pd
 import pickle
 import numpy as np
 from sklearn import tree
-from sklearn.preprocessing import StandardScaler
 
 def main():
     st.title('Customer Prediction Model')
