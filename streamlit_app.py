@@ -87,12 +87,12 @@ def get_counterfactual(predict_x):
     d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
                       continuous_features=list(predict_x.columns), outcome_name='SPEND_RANK')
     backend = 'sklearn'
-    m = dice_ml.Model(model=rf, backend=backend)
+    m = dice_ml.Model(model=model, backend=backend)
     exp = dice_ml.Dice(d,m)
     
     # Generate counterfactual examples
     query_instances = predict_x.iloc[[0]]
-    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=4, desired_class="opposite")
+    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
     dice_exp.visualize_as_dataframe()
 
