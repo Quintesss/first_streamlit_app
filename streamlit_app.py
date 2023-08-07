@@ -45,7 +45,7 @@ def main():
 
     #write a message
     if (prediction == 0):
-        st.subheader("You are a LOW spender");
+        st.subheader("You are a LOW spender :moneybag:");
     elif (prediction == 1):
         st.subheader("You are a HIGH spender");
     else: st.subheader(":red[INVALID prediction output]");
