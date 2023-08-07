@@ -46,7 +46,13 @@ def main():
     """
     
     prediction = predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
-    st.write(prediction);
+
+    #write a message
+    if (prediction == 0):
+        st.subheader("You are a :red[LOW] spender");
+    elif (prediction == 1):
+        st.subheader("You are a :green[HIGH] spender");
+    else: st.subheader(":red[INVALID prediction output]");
 
 #model deployment
 model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
