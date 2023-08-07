@@ -49,7 +49,7 @@ def main():
 
     #write a message
     if (prediction == 0):
-        st.markdown("You are a :red[LOW] spender");
+        st.subheader("You are a :red[LOW] spender");
     elif (prediction == 1):
         st.subheader("You are a :green[HIGH] spender");
     else: st.subheader(":red[INVALID prediction output]");
