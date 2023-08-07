@@ -30,15 +30,15 @@ def main():
     avg_amt = st.number_input('How much do you typically spend in a transaction ($)'
                               , min_value = 0.00, step = 0.01, value = 25.00, format = "%.2f")
     
-    age = 50 
-    gender = 2
-    martial = 0
-    child_count = 0
-    freq_cat = 0 #main
-    subcat = 1 #warm
+    age = 50 #mean
+    gender = 0 #mode (female)
+    martial = 0 #mode (single)
+    child_count = 0 #mode <but if not single, mode=2>
+    freq_cat = 0 #mode (main)
+    subcat = 2 #mode (hot)
     #input values 
     """
-    Location: OHE (might be a challenge, mebbe false everything for now)
+    Location: OHE (dictionary)
     Avg amt & Avg qty
     Age & Gender & Marital & Child count
     Freq catt & Freq subcat
