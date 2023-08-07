@@ -93,7 +93,7 @@ def get_counterfactual(predict_x):
     query_instances = predict_x.iloc[[0]]
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
-    #dice_exp.visualize_as_dataframe()
+    exp.visualize_as_dataframe(show_only_changes=True)
     exp.cf_examples_list[0].final_cfs_df
 
 main();
