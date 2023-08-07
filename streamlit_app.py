@@ -5,12 +5,9 @@ import numpy as np
 from sklearn import tree
 
 def main():
-    st.title('Customer Prediction Model')
-    st.header('Predictions')
-
     html_temp = """
     <div style="background:#025246 ;padding:10px">
-    <h2 style="color:white;text-align:center;"> Customer Segmentation Prediction ML App </h2>
+    <h2 style="color:white;text-align:center;"> Tasty Bytes Customer Propencity Prediction </h2>
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html = True)
