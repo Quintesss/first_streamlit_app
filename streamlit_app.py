@@ -33,13 +33,12 @@ def main():
     child_count = 0 #mode <but if not single, mode=2>
     freq_cat = 0 #mode (main)
     subcat = 2 #mode (hot)
+    
     #input values 
-    """
-    Location: OHE (dictionary)
-    Avg amt & Avg qty
-    Age & Gender & Marital & Child count
-    Freq catt & Freq subcat
-    """
+    #Location: OHE (dictionary)
+    #Avg amt & Avg qty
+    #Age & Gender & Marital & Child count
+    #Freq catt & Freq subcat
     
     prediction = predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
 
