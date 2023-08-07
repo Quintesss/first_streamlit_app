@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import numpy as np
 from sklearn import tree
+from sklearn.preprocessing import StandardScaler
 
 def main():
     st.title('Customer Prediction Model')
@@ -71,6 +72,10 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
     }, index = [0])
 
     #might have to scale values
+    pred_x_before = predict_x.copy()
+    scaler = StandardScaler()
+    predict_x = scaler.fit_transform(predict_x)
+    predict_x = pd.DataFrame(predict_x, index=predict_x_before.index, columns=predict_x_before.columns)
     
     prediction = model.predict(predict_x)
     
