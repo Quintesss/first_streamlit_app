@@ -67,7 +67,7 @@ def main():
     else: st.subheader(":red[INVALID prediction output]");
 
     #st.dataframe(predict_x)
-    get_counterfactual(predict_x);
+    get_counterfactual(predict_x,prediction);
 
 #model deployment
 model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
