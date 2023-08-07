@@ -80,7 +80,7 @@ def predict_model(predict_x):
     
     return int(prediction)
 
-def get_counterfactual(predict_x):
+def get_counterfactual(predict_x, prediction):
     ohe_customer_us = pd.read_csv("CustAnaly_newCritV1.1.csv")
     
     d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "Unnamed: 0.1", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
@@ -88,12 +88,18 @@ def get_counterfactual(predict_x):
     backend = 'sklearn'
     m = dice_ml.Model(model=model, backend=backend)
     exp = dice_ml.Dice(d,m)
+
+    if (prediction == 0):
+        st.subheader("Here are other low spenders... :woman-tipping-hand:");
+    elif (prediction == 1):
+        st.subheader("Here are other high spenders like you! :money_with_wings:");
+
+    # Generate similar examples
+    query_instances = predict_x.iloc[[0]]
     
     # Generate counterfactual examples
-    query_instances = predict_x.iloc[[0]]
-    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
+    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="same")
     # Visualize counterfactual explanation
-    #dice_exp.visualize_as_dataframe(show_only_changes=True)
     dice_exp.cf_examples_list[0].final_cfs_df
 
 main();
