@@ -84,7 +84,7 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
 def get_counterfactual(predict_x):
     ohe_customer_us = pd.read_csv("CustAnaly_newCritV1.1.csv")
     
-    d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
+    d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "Unnamed: 0.1", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
                       continuous_features=list(predict_x.columns), outcome_name='SPEND_RANK')
     backend = 'sklearn'
     m = dice_ml.Model(model=model, backend=backend)
