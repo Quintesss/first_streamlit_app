@@ -49,7 +49,7 @@ def main():
     st.write(prediction);
 
 #model deployment
-model = pickle.load(open('CustAnalyV3.1.pkl','rb'))
+model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
 
 def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
     input=np.array([[gender,martial,child_count,age
@@ -72,6 +72,7 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
     }, index = [0])
 
     #might have to scale values
+    #nvm scale is worse
     
     prediction = model.predict(predict_x)
     
