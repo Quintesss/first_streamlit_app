@@ -73,10 +73,6 @@ def main():
 model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
 
 def predict_model(predict_x):
-    input=np.array([[gender,martial,child_count,age
-                     ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
-                     ,avg_amt,avg_qty,freq_cat,freq_subcat,6]]).astype(np.float64)
-    
     #might have to scale values
     #nvm scale is worse
     
