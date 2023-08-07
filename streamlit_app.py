@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 from sklearn import tree
 import dice_ml
+import IPython
 
 def main():
     html_temp = """
