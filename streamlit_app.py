@@ -49,7 +49,7 @@ def main():
     "AVG_AMT": avg_amt,
     "AVG_QUANTITY": avg_qty,
     "FREQ_CATEGORY": freq_cat,
-    "FREQ_SUBCAT": freq_subcat,
+    "FREQ_SUBCAT": subcat,
     "AGE": age,
     "CITY_New York City": city_dict['New York City'],
     "CITY_Seattle": city_dict['Seattle'],
