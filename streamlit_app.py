@@ -51,7 +51,8 @@ def main():
     if (prediction == 0):
         st.subheader("You are a :red[LOW] spender");
     elif (prediction == 1):
-        st.subheader("You are a :green[HIGH] spender");
+        st.subheader("You are a :green[HIGH] spender")
+        st.write(st.__version__);
     else: st.subheader(":red[INVALID prediction output]");
 
 #model deployment
