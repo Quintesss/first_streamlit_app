@@ -85,7 +85,7 @@ def get_counterfactual(predict_x):
     ohe_customer_us = pd.read_csv("CustAnaly_newCritV1.1.csv")
     
     d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
-                      continuous_features=list(X_train.columns), outcome_name='SPEND_RANK')
+                      continuous_features=list(predict_x.columns), outcome_name='SPEND_RANK')
     backend = 'sklearn'
     m = dice_ml.Model(model=rf, backend=backend)
     exp = dice_ml.Dice(d,m)
