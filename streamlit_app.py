@@ -77,10 +77,11 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
     #nvm scale is worse
     
     prediction = model.predict(predict_x)
+    get_counterfactual(predict_x)
     
     return int(prediction)
 
-def get_counterfactual():
+def get_counterfactual(predict_x):
     ohe_customer_us = pd.read_csv("CustAnaly_newCritV1.1.csv")
     
     d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
