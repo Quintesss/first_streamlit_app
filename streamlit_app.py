@@ -41,23 +41,7 @@ def main():
     #Avg amt & Avg qty
     #Age & Gender & Marital & Child count
     #Freq catt & Freq subcat
-    
-    prediction = predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
 
-    #write a message
-    if (prediction == 0):
-        st.subheader("You are a LOW spender :man-gesturing-no: :fencer:");
-    elif (prediction == 1):
-        st.subheader("You are a HIGH spender :moneybag:");
-    else: st.subheader(":red[INVALID prediction output]");
-
-#model deployment
-model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
-
-def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
-    input=np.array([[gender,martial,child_count,age
-                     ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
-                     ,avg_amt,avg_qty,freq_cat,freq_subcat,6]]).astype(np.float64)
     predict_x = pd.DataFrame({
     "GENDER": gender,
     "MARITAL_STATUS": martial,
@@ -73,12 +57,30 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
     "CITY_Denver": city_dict['Denver'],
     "CITY_Boston": city_dict['Boston']
     }, index = [0])
+    
+    prediction = predict_model(predict_x);
+    #write a message
+    if (prediction == 0):
+        st.subheader("You are a LOW spender :man-gesturing-no: :fencer:");
+    elif (prediction == 1):
+        st.subheader("You are a HIGH spender :moneybag:");
+    else: st.subheader(":red[INVALID prediction output]");
 
+    st.dataframe(predict_x)
+    #get_counterfactual(predict_x);
+
+#model deployment
+model = pickle.load(open('CustAnalyV3.2_Unscaled.pkl','rb'))
+
+def predict_model(predict_x):
+    input=np.array([[gender,martial,child_count,age
+                     ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
+                     ,avg_amt,avg_qty,freq_cat,freq_subcat,6]]).astype(np.float64)
+    
     #might have to scale values
     #nvm scale is worse
     
     prediction = model.predict(predict_x)
-    get_counterfactual(predict_x)
     
     return int(prediction)
 
@@ -96,6 +98,5 @@ def get_counterfactual(predict_x):
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
     st.write(dice_exp.visualize_as_dataframe())
-    st.dataframe(predict_x)
 
 main();
