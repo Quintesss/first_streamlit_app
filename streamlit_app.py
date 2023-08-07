@@ -43,17 +43,36 @@ def main():
     Age & Gender & Marital & Child count
     Freq catt & Freq subcat
     """
+    
     prediction = predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
     st.write(prediction);
 
 #model deployment
-model = pickle.load(open('CustAnalyV2.1.pkl','rb'))
+model = pickle.load(open('CustAnalyV3.1.pkl','rb'))
 
 def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
     input=np.array([[gender,martial,child_count,age
                      ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
                      ,avg_amt,avg_qty,freq_cat,freq_subcat,6]]).astype(np.float64)
-    prediction = model.predict(input)
+    predict_x = pd.DataFrame({
+    "GENDER": gender,
+    "MARITAL_STATUS": martial,
+    "CHILDREN_COUNT": child_count,
+    "AVG_AMT": avg_amt,
+    "AVG_QUANTITY": avg_qty,
+    "FREQ_CATEGORY": freq_cat,
+    "FREQ_SUBCAT": freq_subcat,
+    "AGE": age,
+    "CITY_New York City": city_dict['New York City'],
+    "CITY_Seattle": city_dict['Seattle'],
+    "CITY_San Mateo": city_dict['San Mateo'],
+    "CITY_Denver": city_dict['Denver'],
+    "CITY_Boston": city_dict['Boston']
+    }, index = [0])
+
+    #might have to scale values
+    
+    prediction = model.predict(predict_x)
     
     return int(prediction)
 
