@@ -96,9 +96,17 @@ def get_counterfactual(predict_x, prediction):
 
     # Generate similar examples
     query_instances = predict_x.iloc[[0]]
+    dice_same = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class=prediction)
+    # Visualize counterfactual explanation
+    dice_same.cf_examples_list[0].final_cfs_df
+
+    if (prediction == 0):
+        st.subheader("Here's how you can be a high spender :gem:");
+    elif (prediction == 1):
+        st.subheader("Watch out! You could become a low spender too! :broken_heart:");
     
     # Generate counterfactual examples
-    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="same")
+    dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
     dice_exp.cf_examples_list[0].final_cfs_df
 
