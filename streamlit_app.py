@@ -18,7 +18,7 @@ def main():
 
     
     st.write('Select your city :statue_of_liberty:')
-    location = st.selectbox(
+    location = st.selectbox("",
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
