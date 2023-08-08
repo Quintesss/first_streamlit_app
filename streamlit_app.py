@@ -115,7 +115,7 @@ def get_counterfactual(predict_x, prediction):
     #different between user and others
     #calculate % change
     percent_chg_amt = (exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]) / predict_x["AVG_AMT"].iloc[0] * 100
-    percent_chg_qty = ceil(exp_df["AVG_QUANTITY"].mean() - predict_x["AVG_QUANTITY"].iloc[0])
+    percent_chg_qty = math.ceil(exp_df["AVG_QUANTITY"].mean() - predict_x["AVG_QUANTITY"].iloc[0])
 
     st.header('Here\'s a breakdown of your spending habits');
     if (percent_chg_amt >= 0):
