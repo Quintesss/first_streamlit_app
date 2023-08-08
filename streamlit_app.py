@@ -17,7 +17,7 @@ def main():
     city_dict = {'Boston':0, 'Denver':0, 'New York City':0, 'San Mateo':0, 'Seattle':0}
 
     location = st.selectbox(
-        'Select your city :world_map:',
+        'Select your city :statue_of_liberty:',
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
