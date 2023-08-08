@@ -21,6 +21,7 @@ def main():
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
+    st.header("Tell us more about yourself")
     for x in city_dict:
         if(location == x): city_dict.update({x:1});
     #st.write(city_dict) --checking
@@ -89,30 +90,18 @@ def get_counterfactual(predict_x, prediction):
     m = dice_ml.Model(model=model, backend=backend)
     exp = dice_ml.Dice(d,m)
 
-    if (prediction == 0):
-        st.subheader("Here are other low spenders... :woman-tipping-hand:");
-    elif (prediction == 1):
-        st.subheader("Here are other high spenders like you! :money_with_wings:");
-
     # Generate similar examples
     query_instances = predict_x.iloc[[0]]
     dice_same = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class=prediction)
     # Visualize counterfactual explanation
     same_df = dice_same.cf_examples_list[0].final_cfs_df
-    with st.expander ('Guess who!'):
-        st.dataframe(same_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
-
-    if (prediction == 0):
-        st.subheader("\nHere's how you can be a high spender :gem:");
-    elif (prediction == 1):
-        st.subheader("\nWatch out! You could become a low spender too! :broken_heart:");
+    
     
     # Generate counterfactual examples
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
     exp_df = dice_exp.cf_examples_list[0].final_cfs_df
-    with st.expander ('Take a peek >_<'):    
-        st.dataframe(exp_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
+    
 
     #different between user and others
     #calculate % change
@@ -131,5 +120,20 @@ def get_counterfactual(predict_x, prediction):
         st.subheader("\nYou can put {:d} more items in your basket :shopping_trolley:".format(int(percent_chg_qty)));
     elif (percent_chg_qty<0):
         st.subheader("\nYou have {:d} more items than others! :first_place_medal:".format(abs(int(percent_chg_qty))));
+
+    #show examples of other customers
+    if (prediction == 0):
+        st.subheader("Here are other low spenders... :woman-tipping-hand:");
+    elif (prediction == 1):
+        st.subheader("Here are other high spenders like you! :money_with_wings:");
+    with st.expander ('Guess who!'):
+        st.dataframe(same_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
+    
+    if (prediction == 0):
+        st.subheader("\nHere's how you can be a high spender :gem:");
+    elif (prediction == 1):
+        st.subheader("\nWatch out! You could become a low spender too! :broken_heart:");
+    with st.expander ('Take a peek >_<'):    
+        st.dataframe(exp_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
 
 main();
