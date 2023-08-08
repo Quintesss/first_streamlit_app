@@ -111,7 +111,8 @@ def get_counterfactual(predict_x, prediction):
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
     exp_df = dice_exp.cf_examples_list[0].final_cfs_df
-    st.dataframe(exp_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
+    with st.expander ('Take a peek :eyes:'):    
+        st.dataframe(exp_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
 
     #different between user and others
     #calculate % change
