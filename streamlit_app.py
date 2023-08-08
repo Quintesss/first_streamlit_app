@@ -106,12 +106,14 @@ def get_counterfactual(predict_x, prediction):
     #different between user and others
     #calculate % change
     percent_chg_amt = (exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]) / predict_x["AVG_AMT"].iloc[0] * 100
+    chg_amt = exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]
     percent_chg_qty = math.ceil(exp_df["AVG_QUANTITY"].mean() - predict_x["AVG_QUANTITY"].iloc[0])
 
     st.header('Here\'s a breakdown of your spending habits');
     col1,col2 = st.columns(2)
     if (percent_chg_amt >= 0):
         col1.subheader("\nTry spending {:.2f}% more with us :hand_with_index_and_middle_fingers_crossed:".format(percent_chg_amt));
+        col2.metric("You vs Others", "${:.2f}".format(chg_amt), "{:.2f}%".format(percent_chg_amt))
     elif (percent_chg_amt<0):
         st.subheader("\nYou are currently spending {:.2f}% more than others! :muscle:".format(abs(percent_chg_amt)));
 
