@@ -98,7 +98,7 @@ def get_counterfactual(predict_x, prediction):
     dice_same = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class=prediction)
     # Visualize counterfactual explanation
     same_df = dice_same.cf_examples_list[0].final_cfs_df
-    st.dataframe(same_df)
+    st.dataframe(same_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT'],axis=1))
 
     if (prediction == 0):
         st.subheader("Here's how you can be a high spender :gem:");
