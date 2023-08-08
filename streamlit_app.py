@@ -105,7 +105,7 @@ def get_counterfactual(predict_x, prediction):
 
     #different between user and others
     #calculate % change
-    percent_chg_amt = (exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]) / predict_x["AVG_AMT"].iloc[0] * 100
+    percent_chg_amt = ( predict_x["AVG_AMT"].iloc[0] - exp_df["AVG_AMT"].mean()) / exp_df["AVG_AMT"].mean().iloc[0] * 100
     chg_amt = exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]
     percent_chg_qty = math.ceil(exp_df["AVG_QUANTITY"].mean() - predict_x["AVG_QUANTITY"].iloc[0])
 
@@ -113,9 +113,9 @@ def get_counterfactual(predict_x, prediction):
     col1,col2 = st.columns(2)
     if (percent_chg_amt >= 0):
         col1.subheader("\nTry spending ${:.2f} more with us :hand_with_index_and_middle_fingers_crossed:".format(chg_amt));
-        col2.metric("You vs Others", "${:.2f}".format(predict_x["AVG_AMT"].iloc[0]), "{:.2f}%".format(percent_chg_amt*-1))
     elif (percent_chg_amt<0):
-        st.subheader("\nYou are currently spending {:.2f}% more than others! :muscle:".format(abs(percent_chg_amt)));
+        col1.subheader("\nYou are currently spending ${:.2f} more than others! :muscle:".format(chg_amt));
+    col2.metric("You vs Others", "${:.2f}".format(predict_x["AVG_AMT"].iloc[0]), "{:.2f}%".format(percent_chg_amt));
 
     if (percent_chg_qty == 0):
         st.subheader("\nYour cart size is just right :ok_hand:")
