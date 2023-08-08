@@ -13,6 +13,12 @@ def main():
     <h2 style="color:white;text-align:center;"> Tasty Bytes Customer Propencity Prediction </h2>
     </div>
     """
+    
+    html_div = """
+    <div style="background:#000000 ;padding:10px">
+    </div>
+    """
+    
     st.markdown(html_temp, unsafe_allow_html = True)
     st.sidebar.header("Tell us more about yourself")
 
@@ -66,6 +72,7 @@ def main():
     elif (prediction == 1):
         st.header("You are a HIGH spender :moneybag:");
     else: st.subheader(":red[INVALID prediction output]");
+    st.markdown(html_div, unsafe_allow_html = True)
 
     #st.dataframe(predict_x)
     get_counterfactual(predict_x,prediction);
@@ -82,6 +89,11 @@ def predict_model(predict_x):
     return int(prediction)
 
 def get_counterfactual(predict_x, prediction):
+    html_div = """
+    <div style="background:#000000 ;padding:10px">
+    </div>
+    """
+    
     ohe_customer_us = pd.read_csv("CustAnaly_newCritV1.1.csv")
     
     d = dice_ml.Data(dataframe=ohe_customer_us.drop(columns=["Unnamed: 0", "Unnamed: 0.1", "CUSTOMER_ID","Recency","MEAN_PROFIT","MEMBER_MONTHS","SPEND_MONTH"]),
@@ -124,6 +136,7 @@ def get_counterfactual(predict_x, prediction):
     elif (percent_chg_qty<0):
         st.subheader("\nYou have {:d} more items than others! :first_place_medal:".format(abs(int(percent_chg_qty))));
 
+    st.markdown(html_div, unsafe_allow_html = True)
     #show examples of other customers
     if (prediction == 0):
         st.subheader("Here are other low spenders... :woman-tipping-hand:");
