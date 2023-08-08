@@ -98,16 +98,26 @@ def get_counterfactual(predict_x, prediction):
     dice_same = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class=prediction)
     # Visualize counterfactual explanation
     same_df = dice_same.cf_examples_list[0].final_cfs_df
-    st.dataframe(same_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT'],axis=1))
+    st.dataframe(same_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
 
     if (prediction == 0):
-        st.subheader("Here's how you can be a high spender :gem:");
+        st.subheader("\nHere's how you can be a high spender :gem:");
     elif (prediction == 1):
-        st.subheader("Watch out! You could become a low spender too! :broken_heart:");
+        st.subheader("\nWatch out! You could become a low spender too! :broken_heart:");
     
     # Generate counterfactual examples
     dice_exp = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class="opposite")
     # Visualize counterfactual explanation
-    dice_exp.cf_examples_list[0].final_cfs_df
+    exp_df = dice_exp.cf_examples_list[0].final_cfs_df
+    st.dataframe(exp_df.drop(['GENDER','MARITAL_STATUS','CHILDREN_COUNT','AGE'],axis=1))
+
+    #different between user and others
+    #calculate % change
+    percent_chg_amt = exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0] / predict_x["AVG_AMT"].iloc[0] x 100
+    
+    if (percent_chg_amt >= 0):
+        st.subheader("\nOthers are spending {} more than you :chart:".format(percent_chg_amt));
+    elif (prediction == 1):
+        st.subheader("\nWatch out! You could become a low spender too! :broken_heart:");
 
 main();
