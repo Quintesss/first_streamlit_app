@@ -114,7 +114,7 @@ def get_counterfactual(predict_x, prediction):
     if (percent_chg_amt < 0):
         col1.subheader("\nTry spending ${:.2f} more with us :hand_with_index_and_middle_fingers_crossed:".format(chg_amt));
     elif (percent_chg_amt >= 0):
-        col1.subheader("\nYou are currently spending ${:.2f} more than others! :muscle:".format(chg_amt));
+        col1.subheader("\nYou are currently spending ${:.2f} more than others! :muscle:".format(abs(chg_amt)));
     col2.metric("You vs Others", "${:.2f}".format(predict_x["AVG_AMT"].iloc[0]), "{:.2f}%".format(percent_chg_amt));
 
     if (percent_chg_qty == 0):
