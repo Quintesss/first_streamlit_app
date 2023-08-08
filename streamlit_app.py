@@ -14,14 +14,14 @@ def main():
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html = True)
+    st.sidebar.header("Tell us more about yourself")
+
     #input elements
     city_dict = {'Boston':0, 'Denver':0, 'New York City':0, 'San Mateo':0, 'Seattle':0}
-
-    location = st.selectbox("Select your city",
+    location = st.sidebar.selectbox("Select your city",
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
-    st.header("Tell us more about yourself")
     for x in city_dict:
         if(location == x): city_dict.update({x:1});
     #st.write(city_dict) --checking
