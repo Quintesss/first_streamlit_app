@@ -124,7 +124,7 @@ def get_counterfactual(predict_x, prediction):
         st.subheader("\nYou are currently spending {:.2f}% more than others! :muscle:".format(abs(percent_chg_amt)));
 
     if (percent_chg_qty == 0):
-        st.subheader("\nYour cart size is just right :pinching_hand:")
+        st.subheader("\nYour cart size is just right :ok_hand:")
     elif (percent_chg_qty > 0):
         st.subheader("\nYou can put {:d} more items in your basket :shopping_trolley:".format(int(percent_chg_qty)));
     elif (percent_chg_qty<0):
