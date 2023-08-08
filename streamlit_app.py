@@ -15,7 +15,7 @@ def main():
     """
     
     html_div = """
-    <div style="background:#000000 ;padding:10px">
+    <div style="background:#35756b ;padding:5px">
     </div>
     """
     
@@ -90,7 +90,7 @@ def predict_model(predict_x):
 
 def get_counterfactual(predict_x, prediction):
     html_div = """
-    <div style="background:#000000 ;padding:10px">
+    <div style="background:#679790 ;padding:5px">
     </div>
     """
     
