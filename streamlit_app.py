@@ -16,9 +16,7 @@ def main():
     #input elements
     city_dict = {'Boston':0, 'Denver':0, 'New York City':0, 'San Mateo':0, 'Seattle':0}
 
-    
-    st.write('Select your city :statue_of_liberty:')
-    location = st.selectbox("",
+    location = st.selectbox("Select your city",
         ('Others', 'Boston', 'Denver', 'New York City', 'San Mateo', 'Seattle')
     )
 
@@ -100,6 +98,7 @@ def get_counterfactual(predict_x, prediction):
     dice_same = exp.generate_counterfactuals(query_instances, total_CFs=5, desired_class=prediction)
     # Visualize counterfactual explanation
     same_df = dice_same.cf_examples_list[0].final_cfs_df
+    st.dataframe(same_df)
 
     if (prediction == 0):
         st.subheader("Here's how you can be a high spender :gem:");
