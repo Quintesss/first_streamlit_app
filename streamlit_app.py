@@ -113,7 +113,7 @@ def get_counterfactual(predict_x, prediction):
 
     #different between user and others
     #calculate % change
-    percent_chg_amt = float(exp_df["AVG_AMT"].mean()) - float(predict_x["AVG_AMT"].iloc[0]) / float(predict_x["AVG_AMT"].iloc[0]) x 100
+    percent_chg_amt = exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0] / predict_x["AVG_AMT"].iloc[0] * 100
     
     if (percent_chg_amt >= 0):
         st.subheader("\nOthers are spending {} more than you :chart:".format(percent_chg_amt));
