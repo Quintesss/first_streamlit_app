@@ -114,11 +114,17 @@ def get_counterfactual(predict_x, prediction):
     #different between user and others
     #calculate % change
     percent_chg_amt = (exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]) / predict_x["AVG_AMT"].iloc[0] * 100
-    st.write(percent_chg_amt)
-    
+    percent_chg_qty = (exp_df["AVG_QUANTITY"].mean() - predict_x["AVG_QUANTITY"].iloc[0]) / predict_x["AVG_QUANTITY"].iloc[0] * 100
+
+    st.header('Here's a breakdown of your spending habits');
     if (percent_chg_amt >= 0):
-        st.subheader("\nOthers are spending {} more than you :chart:".format(percent_chg_amt));
+        st.subheader("\nTry spending {:.2f}% more with us :hand_with_index_and_middle_fingers_crossed:".format(percent_chg_amt));
     elif (percent_chg_amt<0):
-        st.subheader("\nWatch out! You could become a low spender too! :broken_heart:");
+        st.subheader("\nYou are currently spending {:.2f}% more than others! :muscle:".format(abs(percent_chg_amt)));
+
+    if (percent_chg_qty >= 0):
+        st.subheader("\nYou can put {:d} more items in your basket :shopping_trolley:".format(percent_chg_qty));
+    elif (percent_chg_qty<0):
+        st.subheader("\nYou have {:d} more items than others! :first_place_medal:".format(abs(percent_chg_qty)));
 
 main();
