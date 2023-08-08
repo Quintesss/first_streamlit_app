@@ -123,8 +123,8 @@ def get_counterfactual(predict_x, prediction):
         st.subheader("\nYou are currently spending {:.2f}% more than others! :muscle:".format(abs(percent_chg_amt)));
 
     if (percent_chg_qty >= 0):
-        st.subheader("\nYou can put {:d} more items in your basket :shopping_trolley:".format(percent_chg_qty));
+        st.subheader("\nYou can put {:d} more items in your basket :shopping_trolley:".format(int(percent_chg_qty)));
     elif (percent_chg_qty<0):
-        st.subheader("\nYou have {:d} more items than others! :first_place_medal:".format(abs(percent_chg_qty)));
+        st.subheader("\nYou have {:d} more items than others! :first_place_medal:".format(abs(int(percent_chg_qty))));
 
 main();
