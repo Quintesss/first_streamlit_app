@@ -116,7 +116,7 @@ def get_counterfactual(predict_x, prediction):
     percent_chg_amt = (exp_df["AVG_AMT"].mean() - predict_x["AVG_AMT"].iloc[0]) / predict_x["AVG_AMT"].iloc[0] * 100
     percent_chg_qty = (exp_df["AVG_QUANTITY"].mean() - predict_x["AVG_QUANTITY"].iloc[0]) / predict_x["AVG_QUANTITY"].iloc[0] * 100
 
-    st.header('Here's a breakdown of your spending habits');
+    st.header('Here\'s a breakdown of your spending habits');
     if (percent_chg_amt >= 0):
         st.subheader("\nTry spending {:.2f}% more with us :hand_with_index_and_middle_fingers_crossed:".format(percent_chg_amt));
     elif (percent_chg_amt<0):
