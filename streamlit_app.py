@@ -60,9 +60,9 @@ def main():
     prediction = predict_model(predict_x);
     #write a message
     if (prediction == 0):
-        st.subheader("You are a LOW spender :man-gesturing-no: :fencer:");
+        st.header("You are a LOW spender :man-gesturing-no: :fencer:");
     elif (prediction == 1):
-        st.subheader("You are a HIGH spender :moneybag:");
+        st.header("You are a HIGH spender :moneybag:");
     else: st.subheader(":red[INVALID prediction output]");
 
     #st.dataframe(predict_x)
@@ -117,7 +117,7 @@ def get_counterfactual(predict_x, prediction):
     
     if (percent_chg_amt >= 0):
         st.subheader("\nOthers are spending {} more than you :chart:".format(percent_chg_amt));
-    elif (prediction == 1):
+    elif (percent_chg_amt<0):
         st.subheader("\nWatch out! You could become a low spender too! :broken_heart:");
 
 main();
